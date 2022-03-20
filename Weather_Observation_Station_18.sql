@@ -1,0 +1,3 @@
+-- 두 좌표 사이의 맨허튼 거리 구하기.
+SELECT ROUND(ABS(MIN(LAT_N)-MAX(LAT_N))+ABS(MIN(LONG_W)-MAX(LONG_W)), 4) 
+FROM STATION;
