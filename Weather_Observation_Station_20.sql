@@ -1,0 +1,5 @@
+-- 특성 LAT_N의 중앙값을 조회하는 쿼리문.
+-- percent_rank 사용하여 0.5인 경우만 조회.
+SELECT ROUND(LAT_N,4) FROM
+(SELECT LAT_N, PERCENT_RANK() OVER (ORDER BY LAT_N) PERCENT FROM STATION) LP
+WHERE PERCENT =0.5;
