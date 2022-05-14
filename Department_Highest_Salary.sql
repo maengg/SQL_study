@@ -26,3 +26,17 @@ FROM Employee AS e
         ) AS dh ON e.departmentId = dh.departmentId 
                 AND e.salary = dh.max_salary
     INNER JOIN Department AS d on d.id = e.departmentId
+
+-- WINDOW 함수 MAX
+SELECT ms.Department
+     , ms.Name As Employee
+     , ms.salary AS Salary
+FROM (
+    SELECT d.name AS Department
+         , e.name
+         , e.salary
+         , MAX(salary) OVER (PARTITION BY e.departmentId) AS max_salary
+    FROM Employee e
+        INNER JOIN Department d On e.departmentId = d.id
+) ms
+WHERE ms.salary = max_salary
